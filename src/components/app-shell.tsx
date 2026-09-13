@@ -13,10 +13,12 @@ import {
   List,
   ShieldCheck,
 } from "@phosphor-icons/react";
+import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
+import type { Role } from "@/domain/access";
 
 const navigation = [
   { href: "/dashboard", label: "Overview", icon: House },
@@ -27,9 +29,11 @@ const navigation = [
   { href: "/dashboard/analytics", label: "Analytics", icon: ChartLineUp },
 ];
 
-export function AppShell({ children }: { children: React.ReactNode }) {
+export function AppShell({ children, userName, role }: { children: React.ReactNode; userName: string; role: Role }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const clerkEnabled = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+  const initials = userName.split(/\s+/).map((part) => part[0]).join("").slice(0, 2).toUpperCase();
 
   return (
     <div className="app-shell">
@@ -60,7 +64,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="sidebar-foot">
           <div className="safe-mode-card"><ShieldCheck weight="fill" /><div><strong>Safe mode is on</strong><span>External actions blocked</span></div></div>
           <Link href="/dashboard/settings"><GearSix /><span>Settings</span></Link>
-          <div className="user-chip"><div>FK</div><span><strong>Fumani Khosa</strong><small>Workspace owner</small></span></div>
+          <div className="user-chip"><div>{initials}</div><span><strong>{userName}</strong><small>Workspace {role}</small></span></div>
         </div>
       </aside>
       {open && <button className="scrim" aria-label="Close menu" onClick={() => setOpen(false)} />}
@@ -68,11 +72,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <header className="mobile-header">
           <button className="icon-button" aria-label="Open menu" onClick={() => setOpen(true)}><List /></button>
           <BrandMark />
-          <div className="avatar">FK</div>
+          {clerkEnabled ? <UserButton /> : <div className="avatar">{initials}</div>}
         </header>
         {children}
       </div>
     </div>
   );
 }
-

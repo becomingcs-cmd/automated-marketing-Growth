@@ -18,8 +18,9 @@
 
 ## Checkpoint 3
 
-- Final authentication provider
-- Email verification and recovery
+- Clerk integration and verified identity synchronisation
+- Clerk/Vercel keys and webhook activation
+- Email verification, recovery, and MFA policy
 - Workspace onboarding
 - Brand brain editing
 - Campaign creation and approval persistence
@@ -42,4 +43,3 @@
 ## Release gate
 
 Run the BidNivo pilot for 30-60 days and measure qualified leads, demos, trials, customers, revenue, and cost per qualified lead before commercialising the platform.
-

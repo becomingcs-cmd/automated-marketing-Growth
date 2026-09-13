@@ -6,6 +6,7 @@ const context = {
   userId: "user-1",
   workspaceId: "workspace-1",
   workspaceSlug: "bidnivo",
+  displayName: "Test Owner",
   role: "owner" as const,
 };
 
@@ -20,4 +21,3 @@ test("missing tenant context fails closed", () => {
 test("cross-workspace access is denied", () => {
   assert.throws(() => assertSameWorkspace(context, "workspace-2"), /cross-workspace/);
 });
-

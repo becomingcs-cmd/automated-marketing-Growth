@@ -5,6 +5,6 @@ import { requireWorkspaceSession } from "@/lib/auth/require-session";
 export const dynamic = "force-dynamic";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  await requireWorkspaceSession();
-  return <AppShell>{children}</AppShell>;
+  const session = await requireWorkspaceSession();
+  return <AppShell userName={session.displayName} role={session.role}>{children}</AppShell>;
 }

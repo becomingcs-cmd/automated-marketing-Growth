@@ -189,6 +189,15 @@ h1, h2, p { margin-top: 0; }
 .auth-card h1 { margin-bottom: 12px; font-size: 32px; letter-spacing: -1.2px; }
 .auth-card p { color: var(--muted); line-height: 1.65; }
 .auth-note { margin-top: 24px; padding: 13px; color: #52615b; background: var(--canvas); border: 1px solid var(--line); border-radius: 10px; font-size: 11px; line-height: 1.55; }
+.clerk-page { min-height: 100vh; display: grid; place-items: center; padding: 32px 20px; background: radial-gradient(circle at 15% 15%, rgba(185,232,71,.12), transparent 24%), var(--nav); }
+.onboarding-page { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: var(--canvas); }
+.onboarding-card { width: min(100%, 620px); padding: 42px; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
+.onboarding-card .brand-mark { margin-bottom: 48px; }
+.onboarding-card .brand-symbol i { background: var(--green); }
+.onboarding-card .section-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 24px; color: var(--green); background: var(--green-soft); border-radius: 14px; }
+.onboarding-card .section-icon svg { width: 23px; }
+.onboarding-card h1 { margin-bottom: 12px; font-size: 34px; letter-spacing: -1.3px; }
+.onboarding-card > p { color: var(--muted); line-height: 1.65; }
 
 @media (max-width: 1040px) {
   .metric-grid { grid-template-columns: repeat(2, 1fr); }

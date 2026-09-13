@@ -30,11 +30,25 @@ const activity = [
 ];
 
 export default async function DashboardPage() {
-  await requireWorkspaceSession();
+  const session = await requireWorkspaceSession();
+  const firstName = session.displayName.split(/\s+/)[0];
+  const now = new Date();
+  const dateLabel = new Intl.DateTimeFormat("en-ZA", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    timeZone: "Africa/Johannesburg",
+  }).format(now);
+  const hour = Number(new Intl.DateTimeFormat("en-ZA", {
+    hour: "2-digit",
+    hourCycle: "h23",
+    timeZone: "Africa/Johannesburg",
+  }).format(now));
+  const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
   return (
     <main className="dashboard-page">
       <div className="page-heading">
-        <div><span className="eyebrow">Sunday, 13 September</span><h1>Good afternoon, Fumani.</h1><p>Here is what the BidNivo growth engine needs from you.</p></div>
+        <div><span className="eyebrow">{dateLabel}</span><h1>{greeting}, {firstName}.</h1><p>Here is what the BidNivo growth engine needs from you.</p></div>
         <Link href="/dashboard/campaigns/new" className="button button-primary"><Lightning weight="fill" />Create campaign</Link>
       </div>
 

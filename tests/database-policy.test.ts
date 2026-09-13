@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const migrationUrl = new URL("../database/migrations/0001_foundation.sql", import.meta.url);
+const clerkMigrationUrl = new URL("../database/migrations/0003_clerk_identity.sql", import.meta.url);
 
 test("every tenant-owned table enables row-level security", async () => {
   const migration = await readFile(migrationUrl, "utf8");
@@ -30,3 +31,8 @@ test("approval and audit history are protected against update and deletion", asy
   assert.match(migration, /BEFORE UPDATE OR DELETE ON audit_events/);
 });
 
+test("Clerk webhook deliveries have a database idempotency constraint", async () => {
+  const migration = await readFile(clerkMigrationUrl, "utf8");
+  assert.match(migration, /UNIQUE \(provider, event_id\)/);
+  assert.match(migration, /ALTER TABLE users ADD COLUMN deleted_at/);
+});

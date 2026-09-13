@@ -36,8 +36,10 @@ Publishing, email, messaging, calls, ad spend, and connector changes are externa
 5. A durable audit event
 6. Safe mode to be disabled by an owner
 
-## Authentication decision boundary
+## Authentication
 
-The application currently exposes an authentication interface and a local demo provider. Demo access throws during production startup. Before production, we must select and connect a provider that supports email verification, session revocation, password recovery, MFA, and secure account linking.
+Clerk is the approved pilot identity provider. GrowthOS uses Clerk for identity verification and session management while PostgreSQL remains authoritative for workspace membership and application roles. Clerk webhooks are signature-verified and idempotent. Demo access throws during production startup.
+
+Production activation still requires Clerk keys, a signed webhook secret, and final dashboard settings for email verification and MFA.
 
 The protected dashboard layout is forced to render dynamically so authentication is evaluated on every request. Every protected page also performs its own fail-closed session check before rendering because layouts and pages can render in parallel. Protected HTML must never be emitted as a static build artifact or a streamed redirect body.

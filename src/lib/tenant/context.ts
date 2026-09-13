@@ -4,11 +4,12 @@ export type WorkspaceContext = Readonly<{
   userId: string;
   workspaceId: string;
   workspaceSlug: string;
+  displayName: string;
   role: Role;
 }>;
 
 export function requireWorkspaceContext(context: Partial<WorkspaceContext> | null): WorkspaceContext {
-  if (!context?.userId || !context.workspaceId || !context.workspaceSlug || !context.role) {
+  if (!context?.userId || !context.workspaceId || !context.workspaceSlug || !context.displayName || !context.role) {
     throw new Error("Unauthorized: a complete workspace context is required");
   }
   return context as WorkspaceContext;
@@ -19,4 +20,3 @@ export function assertSameWorkspace(context: WorkspaceContext, resourceWorkspace
     throw new Error("Forbidden: cross-workspace access denied");
   }
 }
-
