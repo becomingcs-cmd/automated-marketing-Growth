@@ -198,6 +198,10 @@ h1, h2, p { margin-top: 0; }
 .onboarding-card .section-icon svg { width: 23px; }
 .onboarding-card h1 { margin-bottom: 12px; font-size: 34px; letter-spacing: -1.3px; }
 .onboarding-card > p { color: var(--muted); line-height: 1.65; }
+.onboarding-actions { margin-top: 24px; }
+.onboarding-actions .button { width: 100%; justify-content: center; border: 0; cursor: pointer; }
+.onboarding-help { margin-top: 22px; padding: 14px; background: #fff8e7; border: 1px solid #f0d995; border-radius: 10px; font-size: 12px; }
+.onboarding-help code { color: var(--nav); font-weight: 700; }
 
 @media (max-width: 1040px) {
   .metric-grid { grid-template-columns: repeat(2, 1fr); }

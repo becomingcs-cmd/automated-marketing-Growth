@@ -9,6 +9,7 @@ const schema = z.object({
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1).optional(),
   CLERK_SECRET_KEY: z.string().min(1).optional(),
   CLERK_WEBHOOK_SIGNING_SECRET: z.string().min(1).optional(),
+  BOOTSTRAP_OWNER_EMAIL: z.string().email().optional(),
 });
 
 export function readEnv() {
