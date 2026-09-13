@@ -22,10 +22,11 @@ The product is intentionally in safe mode: it can plan, draft, approve, and audi
 ```bash
 cp .env.example .env.local
 npm install
+npm run db:migrate
 npm run dev
 ```
 
-Open <http://127.0.0.1:3000>. For the database, run the SQL files in `database/migrations` against PostgreSQL in filename order.
+Open <http://127.0.0.1:3000>. `db:migrate` uses the unpooled database URL when available, records checksums, and refuses to run if an applied migration has been edited.
 
 ## Clerk authentication
 
