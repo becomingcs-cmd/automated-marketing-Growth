@@ -10,7 +10,7 @@ const isProtectedRoute = createRouteMatcher([
 
 const withClerk = clerkMiddleware(async (auth, request) => {
   if (isProtectedRoute(request)) await auth.protect();
-}, { frontendApiProxy: { enabled: true } });
+});
 
 export default function proxy(request: NextRequest, event: NextFetchEvent) {
   const configured = Boolean(
